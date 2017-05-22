@@ -1,5 +1,5 @@
 ---
-- name: Sets default policy to accept all UDP and TCP packets on all servers (To avoid getting locked out)
+- name: Set default policy to accept all UDP and TCP packets on all servers (To avoid getting locked out)
   command: iptables -P INPUT ACCEPT
 
 - name: Flush existing rule set
@@ -21,3 +21,6 @@
 
 - name: Set default policy to drop all UDP and TCP packets on all servers
   command: iptables -P INPUT DROP
+
+- name: Saves iptable rules
+  command: iptables-save
