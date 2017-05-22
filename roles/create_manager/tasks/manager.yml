@@ -5,9 +5,9 @@
   ignore_errors: yes
 
 - name: Create an admin named manager (CentOS)
-  user: name=manager group=wheel shell=/bin/bash createhome=yes home=/home/manager password={{ passwd |password_hash('sha_512') }}
+  user: name=manager group=wheel shell=/bin/bash createhome=yes home=/home/manager password=$6$HXqab4NZQnmgxtdY$RjVbDn6vyrjtaZB2ndz84F1dLc6UYMYZ80ltp5wBx11/3Zn7nqYOICm//vomxG7uKm1uo90/5vYpqCXqoMPGY0
   when: ansible_distribution == "CentOS" and result.stdout == ""
 
 - name: Create an admin named manager (Debian)
-  user: name=manager group=sudo shell=/bin/bash createhome=yes home=/home/manager password={{ passwd |password_hash('sha_512') }}
+  user: name=manager group=sudo shell=/bin/bash createhome=yes home=/home/manager password=$6$HXqab4NZQnmgxtdY$RjVbDn6vyrjtaZB2ndz84F1dLc6UYMYZ80ltp5wBx11/3Zn7nqYOICm//vomxG7uKm1uo90/5vYpqCXqoMPGY0
   when: ansible_distribution == "Debian" and result.stdout == ""

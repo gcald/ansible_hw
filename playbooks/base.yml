@@ -4,6 +4,7 @@
   vars:
     ansible_ssh_user: root
     ansible_ssh_pass: electric dancy pants
+    upassword: password
   roles:
     - role: create_manager
     - role: install_packages

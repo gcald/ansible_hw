@@ -4,6 +4,6 @@
   vars:
     ansible_ssh_user: manager
     ansible_become_user: root
-    ansible_become_pass: electric dancy pants
+    ansible_become_pass: password
   roles:
-    -role: setup_iptables
+    - role: setup_iptables

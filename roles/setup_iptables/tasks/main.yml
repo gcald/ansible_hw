@@ -1,5 +1,12 @@
 ---
-- name:Flush existing rule set
-  iptables:
-    flush:
+- name: Flush existing rule set
+  command: iptables -F
 
+- name: Open TCP ports 21, 22, 53, and 123 on all servers
+  command: iptables -A INPUT -p tcp -m multiport --dports 21,22,53,123 -j ACCEPT
+
+- name: Open UDP port 53 on all servers
+  command: iptables -A INPUT -p udp -dport -j ACCEPT
+
+- name: Open TCP ports 25, 110, 143 on tiny-centos7
+  command: echo ansible_dsitribution_release
