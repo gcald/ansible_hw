@@ -1,0 +1,5 @@
+---
+- name:Flush existing rule set
+  iptables:
+    flush:
+
