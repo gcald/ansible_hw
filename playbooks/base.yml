@@ -1,12 +1,10 @@
 ---
 - hosts: servers
   become: yes
-  vars: 
+  vars:
     ansible_ssh_user: root
     ansible_ssh_pass: electric dancy pants
-    ansible_become_user: root
-    ansible_become_pass: electric dancy pants
   roles:
-    -role: create_manager
-    -role: install_packages
-    -role: set_dns
+    - role: create_manager
+    - role: install_packages
+    - role: set_dns

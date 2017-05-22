@@ -1,8 +1,12 @@
 ---
-- name: Create an admin  named manager (CentOS)
-  command: adduser manager -g wheel
-  when: ansible_distribution == "CentOS"
+- name: Check if manager already exists.
+  command: grep "manager" /etc/passwd
+  register: result
 
-- name: Create an admin  named manager (Debian)
-  command: adduser manager -g sudo
-  when: ansible_distribution == "Debian"
+- name: Create an admin named manager (CentOS)
+  command: adduser manager -g wheel
+  when: ansible_distribution == "CentOS" and result.stdout == ""
+
+- name: Create an admin named manager (Debian)
+  action: user name=manager group=sudo shell=/bin/bash createhome=yes home=/home/manager password="passwd"
+  when: ansible_distribution == "Debian" and result.stdout == ""

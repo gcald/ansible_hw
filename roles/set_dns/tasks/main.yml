@@ -8,5 +8,5 @@
 - name: Set secondary dns (Debian)
   when: ansible_distribution == "Debian"
   lineinfile:	
-	path: /etc/network/interfaces
-	line: "dns-nameservers 209.244.0.3"
+    path: /etc/network/interfaces
+    line: "dns-nameservers 209.244.0.3"
