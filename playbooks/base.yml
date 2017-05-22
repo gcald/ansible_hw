@@ -1,0 +1,7 @@
+---
+- hosts: servers
+  become: yes
+  roles:
+    -role: create_manager
+    -role: install_packages
+    -role: set_dns

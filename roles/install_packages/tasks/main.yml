@@ -1,0 +1,9 @@
+---
+- name: Install mtr, tcpdump, nano, and cowsay on servers
+  action: >
+    {{ ansible_pkg_mgr }} name={{ item }} state=present update_cache=yes
+  with_items:
+  - mtr
+  - tcpdump
+  - nano
+  - cowsays

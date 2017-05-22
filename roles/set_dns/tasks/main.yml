@@ -1,0 +1,12 @@
+---
+- name: Set secondary (primary is already set) dns (CentOS)
+  when: ansible_distribution == "CentOS"
+  lineinfile:
+    path: /etc/sysconfig/network-scripts/ifcfg-enp0s3
+    line: "DNS2=209.244.0.3"
+
+- name: Set secondary dns (Debian)
+  when: ansible_distribution == "Debian"
+  lineinfile:	
+	path: /etc/network/interfaces
+	line: "dns-nameservers 209.244.0.3"

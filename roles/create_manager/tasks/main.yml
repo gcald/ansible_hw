@@ -1,0 +1,5 @@
+---
+- name: Create manager
+  include: manager.yml
+- name: Create and transfer keys
+  include: keys.yml

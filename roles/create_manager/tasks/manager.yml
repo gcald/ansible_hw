@@ -1,0 +1,8 @@
+---
+- name: Create an admin  named manager (CentOS)
+  command: adduser manager -g wheel
+  when: ansible_distribution == "CentOS"
+
+- name: Create an admin  named manager (Debian)
+  command: adduser manager -g sudo
+  when: ansible_distribution == "Debian"
