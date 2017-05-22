@@ -1,4 +1,7 @@
 ---
+- name: Sets default policy to accept all UDP and TCP packets on all servers (To avoid getting locked out)
+  command: iptables -P INPUT ACCEPT
+
 - name: Flush existing rule set
   command: iptables -F
 
@@ -8,5 +11,13 @@
 - name: Open UDP port 53 on all servers
   command: iptables -A INPUT -p udp -dport -j ACCEPT
 
-- name: Open TCP ports 25, 110, 143 on tiny-centos7
-  command: echo ansible_dsitribution_release
+- name: Open TCP ports 25, 110, and 143 on tiny-centos7
+  command: iptables -A INPUT -p tcp -m multiport --dports 25,110,143 -j ACCEPT
+  when: inventory_hostname == "10.0.5.102"
+
+- name: Open TCP ports 80 and 443 on tiny-centos7-b
+  command: iptables -A INPUT -p tcp -m multiport --dports 80,443 -j ACCEPT
+  when: inventory_hostname == "10.0.5.103"
+
+- name: Set default policy to drop all UDP and TCP packets on all servers
+  command: iptables -P INPUT DROP
