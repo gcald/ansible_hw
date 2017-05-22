@@ -5,8 +5,16 @@
     path: /etc/sysconfig/network-scripts/ifcfg-enp0s3
     line: "DNS2=209.244.0.3"
 
+- name: Set primary dns (Debian)
+  when: ansible_distribution == "Debian"
+  lineinfile:
+    path: /etc/resolv.conf
+    insertafter: "search local"
+    line: nameserver 10.5.0.1
+
 - name: Set secondary dns (Debian)
   when: ansible_distribution == "Debian"
-  lineinfile:	
-    path: /etc/network/interfaces
-    line: "dns-nameservers 209.244.0.3"
+  lineinfile:
+    path: /etc/resolv.conf
+    insertafter: "nameserver 10.5.0.1"
+    line: nameserver 209.244.0.3
